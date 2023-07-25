@@ -3,6 +3,7 @@
   <head></head>
   <body>
     <!-- Code changes are at the bottom. -->
+    <p class="js-display-calculation"></p>
     <p>
       <button
         onclick="
@@ -125,7 +126,7 @@
       <button
         onclick="
         calculation = eval(calculation);
-        console.log(calculation);
+        displayCalculation();
 
         // Remember to save the calculation here.
         localStorage.setItem('calculation', calculation);
@@ -147,7 +148,7 @@
       <button
         onclick="
         calculation = '';
-        console.log(calculation);
+        displayCalculation();
 
         // Remember to save the calculation here.
         localStorage.setItem('calculation', calculation);
@@ -158,11 +159,13 @@
     </p>
 
     <script>
-      let calculation = localStorage.getItem("calculation") || "";
+      let calculation = localStorage.getItem("calculation") || " ";
+
+      displayCalculation();
 
       function updateCalculation(value) {
         calculation += value;
-        console.log(calculation);
+        displayCalculation();
         localStorage.setItem("calculation", calculation);
       }
 
@@ -170,6 +173,11 @@
       // to reuse this code.
       function saveCalculation() {
         localStorage.setItem("calculation", calculation);
+      }
+
+      function displayCalculation() {
+        document.querySelector(".js-display-calculation").innerHTML =
+          calculation;
       }
     </script>
   </body>
